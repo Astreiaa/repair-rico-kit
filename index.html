@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kit de bienvenue · Repair Rico</title>
+<meta name="description" content="Le kit de bienvenue des nouveaux membres de Repair Rico : l'histoire du garage, réparation, custom, run, facture et annonces.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a0a08">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a08; --s1:#131310; --s2:#1b1b16; --s3:#24241d;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.2);
+  --txt:#f3f0e6; --soft:#d6d2c4; --mute:#a5a194; --dim:#77746a;
+  --y:#ffc32e; --yink:#1b1810; --ysoft:rgba(255,195,46,.13);
+  --rojo:#ff5d4a; --verde:#52c878; --azul:#6ea4ff; --naranja:#ff8b4d;
+  --paper:#f4eedc; --ink:#1b1810; --pmute:#6e6a5c;
+  --display:'Syne','Archivo Black','Arial Black',system-ui,sans-serif;
+  --body:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --pad:clamp(18px,4.6vw,56px); --max:1080px; --rad:24px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{background:var(--bg);color:var(--txt);font:400 1rem/1.65 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip}
+a{color:inherit}
+ul,ol{list-style:none}
+b,strong{font-weight:700}
+em{font-style:normal;color:var(--y)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700}
+code{font:500 .86em var(--mono);background:rgba(255,255,255,.08);padding:.1em .4em;border-radius:6px;overflow-wrap:anywhere}
+:focus-visible{outline:2px solid var(--y);outline-offset:3px;border-radius:6px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:100%;max-width:calc(var(--max) + var(--pad)*2);margin:0 auto;padding-inline:var(--pad)}
+.i{flex:none;width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.t-azul{--tile:#2f6fdb} .t-naranja{--tile:#ee5a1c} .t-amarillo{--tile:#ffc32e} .t-verde{--tile:#2e9c4c} .t-rojo{--tile:#d6301f}
+
+/* petite etiquette mono avec point */
+.kick{display:inline-flex;align-items:center;gap:.65em;font:500 .76rem/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--mute)}
+.kick .dot{flex:none;width:7px;height:7px;border-radius:50%;background:var(--y)}
+.kick b{font-weight:500;color:var(--txt)}
+.kick .sep{color:var(--dim)}
+.kick .no::before{content:counter(blk,decimal-leading-zero)}
+
+/* boutons-pilules */
+.pill{display:inline-flex;align-items:center;gap:.8em;padding:.36em .36em .36em 1.3em;border-radius:999px;font:600 .95rem/1 var(--body);text-decoration:none;white-space:nowrap;transition:transform .15s,background .15s,border-color .15s}
+.pill .ic{display:grid;place-items:center;width:2.2em;height:2.2em;border-radius:50%;font-size:.95em;transition:transform .2s}
+.pill .ic .i{width:1.1em;height:1.1em;stroke-width:2.2}
+.pill:hover .ic{transform:translate(1px,-1px)}
+.pill.y{background:var(--y);color:var(--yink)} .pill.y .ic{background:var(--yink);color:var(--y)}
+.pill.y:hover{background:#ffd25c}
+.pill.o{border:1px solid var(--line2);color:var(--txt)} .pill.o .ic{border:1px solid var(--line2)}
+.pill.o:hover{border-color:var(--y);color:var(--y)}
+.pill.sm{font-size:.86rem}
+
+/* NAV : pilule flottante */
+.nav{position:sticky;top:0;z-index:30;padding:14px var(--pad) 0;pointer-events:none}
+.nav-in{pointer-events:auto;display:flex;align-items:center;gap:16px;max-width:var(--max);margin:0 auto;padding:8px 8px 8px 22px;background:rgba(19,19,16,.84);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand .i{width:24px;height:24px;color:#fff;stroke-width:1.9}
+.brand b{font:800 1.12rem/1 var(--display);letter-spacing:-.02em}
+.brand i{font-style:normal;color:var(--y)}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin:0 auto}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{flex:none;text-decoration:none;font:500 .88rem/1 var(--body);color:var(--soft);padding:.78em 1em;border-radius:999px;transition:background .15s,color .15s}
+.tabs a:hover{background:rgba(255,255,255,.06);color:var(--txt)}
+.tabs a[aria-selected="true"]{background:rgba(255,255,255,.09);color:var(--y)}
+
+/* HERO */
+.hero{position:relative;padding:clamp(30px,5vw,60px) 0 0;overflow-x:clip}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:clamp(20px,4vw,56px);align-items:end}
+.hero-txt{padding-bottom:clamp(30px,5vw,60px)}
+.hero h1{font:800 clamp(1.8rem,3.5vw,2.85rem)/1.1 var(--display);letter-spacing:-.03em;margin-top:22px;max-width:14em}
+.hero h1 em{white-space:nowrap}
+.hero .sub{margin-top:20px;max-width:44ch;color:var(--mute);font-size:1.06rem}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.trust{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;margin-top:32px;padding-top:22px;border-top:1px solid var(--line)}
+.trust a{font:700 .95rem/1 var(--display);letter-spacing:-.01em;color:var(--mute);text-decoration:none;transition:color .15s}
+.trust a:hover{color:var(--y)}
+.feat{display:flex;align-items:center;gap:14px;margin-top:22px;padding:12px 20px 12px 12px;max-width:390px;background:var(--s1);border:1px solid var(--line);border-radius:20px;text-decoration:none;transition:border-color .2s,background .2s}
+.feat:hover{border-color:var(--y);background:var(--s2)}
+.feat .th{flex:none;display:grid;place-items:center;width:62px;height:62px;border-radius:16px;background:var(--s3);border:1px solid var(--line2);color:#fff}
+.feat .th .i{width:46%;height:46%}
+.feat small{display:block;font:500 .66rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.feat b{display:block;margin-top:5px;font:700 1.05rem/1.2 var(--display)}
+.feat span{display:block;margin-top:2px;font-size:.84rem;color:var(--mute)}
+
+.hero-vis{position:relative;width:100%;max-width:520px;aspect-ratio:1/1.02;justify-self:end}
+.ring{position:absolute;left:-8%;right:-8%;top:4%;aspect-ratio:1;border-radius:50%;border:1px solid var(--line)}
+.sun{position:absolute;left:4%;right:4%;bottom:0;aspect-ratio:2/1;border-radius:50% 50% 0 0/100% 100% 0 0;background:var(--y)}
+.vis-cut{position:absolute;left:50%;bottom:0;height:96%;width:auto;transform:translateX(-50%)}
+.vt{position:absolute;display:grid;place-items:center;aspect-ratio:1;border-radius:28%;color:#fff;background:linear-gradient(160deg,#2a2a22,#15150f);border:1px solid var(--line2);box-shadow:0 26px 50px rgba(0,0,0,.55)}
+.vt .i{width:50%;height:50%;stroke-width:1.25}
+.vt.a{left:8%;top:14%;width:36%;rotate:-8deg}
+.vt.b{right:6%;top:33%;width:44%;rotate:6deg}
+.vt.c{left:26%;bottom:7%;width:30%;rotate:3deg}
+.badge{position:absolute;right:3%;top:10%;display:grid;place-items:center;width:clamp(88px,20%,108px);aspect-ratio:1;border-radius:50%;background:var(--bg);border:1px solid var(--line2)}
+.badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 24s linear infinite}
+.badge text{fill:var(--y);font:500 7.4px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.badge .arr{position:relative;display:grid;place-items:center;width:44%;aspect-ratio:1;border-radius:50%;background:var(--y);color:var(--yink)}
+.badge .arr .i{width:46%;height:46%;stroke-width:2.2}
+.plus{position:absolute;color:var(--dim);font:300 1.5rem/1 var(--mono)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* bande inclinee */
+.bands{position:relative;padding:38px 0 42px;overflow:hidden}
+.bands::before{content:"";position:absolute;left:-5%;right:-5%;top:50%;height:64px;margin-top:-30px;background:#1c1c17;transform:rotate(1.4deg)}
+.band{position:relative;margin-inline:-3%;padding:.95em 0 .85em;background:var(--y);color:var(--yink);transform:rotate(-1.5deg);overflow:hidden;white-space:nowrap}
+.mq{display:flex;width:max-content;animation:mq 34s linear infinite}
+.mq-g{display:flex;align-items:center;gap:1.5em;padding-right:1.5em;font:800 clamp(1.05rem,2.4vw,1.6rem)/1 var(--display);letter-spacing:-.015em}
+.mq-g i{font-style:normal;font-size:.8em}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* chiffres */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.stat{padding:26px 20px 30px 26px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:0;padding-left:0}
+.stat b{display:block;font:800 clamp(2.6rem,6vw,4.4rem)/1 var(--display);letter-spacing:-.035em}
+.stat b i{font-style:normal;color:var(--y)}
+.stat span{display:block;margin-top:10px;color:var(--mute);font-size:.92rem;line-height:1.4}
+
+/* ONGLETS */
+main{padding-top:clamp(30px,4.6vw,56px)}
+.panel:not([hidden]){animation:rise .45s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cover-card{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding:clamp(26px,4.6vw,56px);background:var(--s1);border:1px solid var(--line);border-radius:32px}
+.cover-card::before{content:"";position:absolute;inset:0;background:radial-gradient(58% 130% at 100% 0%,color-mix(in srgb,var(--tile) 34%,transparent),transparent 72%);pointer-events:none}
+.cover-txt{position:relative}
+.cover h2{font:800 clamp(2rem,5vw,3.6rem)/1.06 var(--display);letter-spacing:-.03em;margin-top:20px;max-width:13em}
+.cover .sub{margin-top:16px;max-width:44ch;color:var(--mute)}
+.cover-tile{position:relative;display:grid;place-items:center;width:clamp(110px,17vw,190px);aspect-ratio:1;border-radius:34px;color:#fff;background:linear-gradient(160deg,#2a2a22,#15150f);border:1px solid var(--line2);rotate:4deg;box-shadow:0 26px 50px rgba(0,0,0,.5)}
+.cover-tile .i{width:46%;height:46%;stroke-width:1.2}
+
+/* CORPS */
+.body{padding-block:clamp(34px,5vw,60px) 20px;counter-reset:blk}
+.blk{counter-increment:blk;margin-top:clamp(58px,8vw,98px)}
+.body > .lead + .blk,.body > .blk:first-child{margin-top:clamp(40px,6vw,68px)}
+.bh{margin-bottom:clamp(22px,3.4vw,36px)}
+.bh h3{font:800 clamp(1.7rem,3.8vw,2.7rem)/1.08 var(--display);letter-spacing:-.03em;margin-top:16px;max-width:22em}
+.lead{max-width:62ch;font-size:clamp(1.05rem,1.6vw,1.18rem);color:var(--soft)}
+.lead + .lead{margin-top:1em}
+.lead b{color:var(--txt)}
+.pull{position:relative;margin-top:30px;max-width:34em;padding:26px 28px 24px 32px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad);box-shadow:inset 4px 0 0 var(--y);font:700 clamp(1.2rem,2.4vw,1.6rem)/1.35 var(--display);letter-spacing:-.015em}
+.pull cite{display:block;margin-top:12px;font:500 .74rem var(--mono);font-style:normal;letter-spacing:.15em;text-transform:uppercase;color:var(--y)}
+
+/* etapes */
+.route.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:16px}
+.route.cards .step{display:flex;flex-direction:column;gap:10px;padding:26px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad);transition:border-color .2s,background .2s}
+.route.cards .step:hover{border-color:var(--y);background:var(--s2)}
+.num{font:500 .8rem/1 var(--mono);letter-spacing:.1em;color:var(--dim);transition:color .2s}
+.step:hover .num{color:var(--y)}
+.step h4{font:700 1.3rem/1.15 var(--display);letter-spacing:-.015em}
+.step > p,.step > div > p{color:var(--mute)}
+.hows{margin-top:auto;padding-top:16px;border-top:1px solid var(--line)}
+.how{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;font-size:.92rem;color:var(--soft)}
+.how + .how{margin-top:10px}
+.tag{font:500 .64rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:.55em .8em;border-radius:999px;white-space:nowrap}
+.tag.rp{background:var(--ysoft);color:var(--y);border:1px solid rgba(255,195,46,.35)}
+.tag.jeu{background:rgba(110,164,255,.12);color:var(--azul);border:1px solid rgba(110,164,255,.35)}
+/* frise */
+.route.tl{position:relative;max-width:760px}
+.route.tl::before{content:"";position:absolute;left:11px;top:14px;bottom:30px;width:1px;background:linear-gradient(var(--y),var(--line2) 60%,var(--line))}
+.route.tl .step{display:grid;grid-template-columns:24px minmax(0,1fr);gap:22px;padding-bottom:34px}
+.route.tl .step:last-child{padding-bottom:0}
+.num.dot{position:relative;z-index:1;width:23px;height:23px;margin-top:3px;border-radius:50%;background:var(--bg);border:2px solid var(--y)}
+.num.dot::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--y)}
+.when{display:block;margin-bottom:6px;font:500 .74rem/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--y)}
+
+/* cases a cocher */
+.checkwrap{max-width:720px;padding:8px 26px 20px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad)}
+.check label{display:flex;gap:14px;align-items:flex-start;padding:15px 0;cursor:pointer;border-bottom:1px solid var(--line)}
+.check li:last-child label{border-bottom:0}
+.check input{position:absolute;opacity:0;width:1px;height:1px}
+.check .box{flex:none;position:relative;width:24px;height:24px;margin-top:1px;border-radius:8px;border:1.5px solid var(--line2);background:var(--bg);transition:background .15s,border-color .15s}
+.check input:checked + .box{background:var(--y);border-color:var(--y)}
+.check input:checked + .box::after{content:"";position:absolute;left:7px;top:2px;width:7px;height:12px;border:solid var(--yink);border-width:0 2.5px 2.5px 0;rotate:42deg}
+.check input:focus-visible + .box{outline:2px solid var(--y);outline-offset:3px}
+.check input:checked ~ .tx{color:var(--dim);text-decoration:line-through}
+.prog{margin-top:16px;font:500 .76rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--y)}
+
+/* fiches */
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.idcard{padding:26px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad);color:var(--soft)}
+.id-top{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.av{flex:none;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:var(--y);color:var(--yink);font:800 1.4rem/1 var(--display)}
+.idcard h4{font:700 1.2rem/1.15 var(--display);color:var(--txt)}
+.role{margin-top:4px;font:500 .7rem/1.2 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+.idcard p + p{margin-top:12px}
+.goto{padding-top:14px;border-top:1px solid var(--line);color:var(--mute)}
+.goto b{color:var(--y)}
+.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.vals li{display:flex;flex-direction:column;gap:8px;padding:24px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad)}
+.vals b{font:700 1.2rem/1.15 var(--display);letter-spacing:-.01em;color:var(--y)}
+.vals span{color:var(--mute);font-size:.95rem}
+
+/* cartes (familles de custom, grades) */
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;counter-reset:m}
+.menu li{position:relative;counter-increment:m;display:flex;flex-direction:column;padding:24px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad);transition:border-color .2s,background .2s}
+.menu li::after{content:counter(m,decimal-leading-zero);position:absolute;top:24px;right:24px;font:500 .78rem/1 var(--mono);color:var(--dim)}
+.menu li:hover{border-color:var(--y);background:var(--s2)}
+.mt{display:grid;place-items:center;width:64px;aspect-ratio:1;margin-bottom:16px;border-radius:18px;color:#fff;background:var(--s3);border:1px solid var(--line)}
+.mt .i{width:46%;height:46%;stroke-width:1.6}
+.mt b{font:800 1.6rem/1 var(--display);color:#fff}
+.menu h4{font:700 1.2rem/1.15 var(--display);letter-spacing:-.01em;margin-bottom:6px}
+.menu p{color:var(--mute);font-size:.95rem}
+
+/* listes */
+.plain,.rules{max-width:720px;padding:6px 26px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad)}
+.plain li,.rules li{position:relative;padding:15px 0 15px 26px;border-bottom:1px solid var(--line);color:var(--soft)}
+.plain li:last-child,.rules li:last-child{border-bottom:0}
+.plain li::before,.rules li::before{content:"";position:absolute;left:0;top:1.5em;width:8px;height:8px;border-radius:50%;background:var(--y)}
+.rules li b{color:var(--txt)}
+.faq{display:grid;grid-template-columns:minmax(0,15em) minmax(0,1fr);max-width:900px;padding:6px 26px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad)}
+.faq dt,.faq dd{padding:16px 0;border-bottom:1px solid var(--line)}
+.faq dt{padding-right:22px;font:700 1.02rem/1.35 var(--display);letter-spacing:-.01em}
+.faq dd{color:var(--mute)}
+.faq dt:last-of-type,.faq dd:last-of-type{border-bottom:0}
+.yn > div{padding:26px;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad)}
+.yes-h,.no-h{display:inline-block;margin-bottom:10px;padding:.65em 1em;border-radius:999px;font:500 .72rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase}
+.yes-h{background:rgba(82,200,120,.14);color:var(--verde)} .no-h{background:rgba(255,93,74,.14);color:var(--rojo)}
+.yn li{position:relative;padding:12px 0 12px 30px;border-bottom:1px solid var(--line);color:var(--soft)}
+.yn li:last-child{border-bottom:0}
+.yes li::before,.no li::before{content:"";position:absolute;left:0;top:1em;width:16px;height:16px}
+.yes li::before{background:var(--verde);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat}
+.no li::before{background:var(--rojo);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18'/%3E%3Cpath d='m6 6 12 12'/%3E%3C/svg%3E") center/contain no-repeat}
+.tw{max-width:820px;overflow:auto;background:var(--s1);border:1px solid var(--line);border-radius:var(--rad)}
+.board{width:100%;border-collapse:collapse}
+.board th{padding:16px 22px;font:500 .7rem/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;text-align:left;color:var(--mute);border-bottom:1px solid var(--line)}
+.board td{padding:16px 22px;vertical-align:top;color:var(--soft);border-top:1px solid var(--line)}
+.board tbody tr:first-child td{border-top:0}
+.board td:first-child{font:700 1rem/1.3 var(--display);color:var(--txt)}
+.board td:last-child{font-family:var(--mono);white-space:nowrap}
+
+/* photos */
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.photo{margin:0;padding:10px;background:var(--s1);border:1px solid var(--line);border-radius:28px}
+.photo .frame{aspect-ratio:var(--r,4/3);overflow:hidden;display:grid;place-items:center;border-radius:20px;background:var(--s2)}
+.photo .shot{width:100%;height:100%;object-fit:cover;display:block}
+.photo.empty .frame{position:relative;padding:14px;text-align:center;border:1.5px dashed var(--line2);background:transparent}
+.photo .ghost{position:absolute;inset:14% 0 auto;margin:auto;width:30%;height:auto;max-height:46%;stroke-width:1.1;color:#fff;opacity:.3}
+.photo.empty p{position:relative;align-self:end;font:500 .8rem/1.4 var(--mono);color:var(--mute)}
+.photo.empty b{display:block;font:500 .72rem var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--y)}
+.photo figcaption{padding:12px 8px 4px;font:500 .78rem/1.4 var(--mono);letter-spacing:.03em;color:var(--mute)}
+
+/* notes a completer (mode brouillon) */
+.todo{margin-top:22px;max-width:62ch;padding:16px 20px;background:rgba(255,195,46,.07);border:1px dashed rgba(255,195,46,.55);border-radius:18px;font-size:.93rem;color:#e9e2c8}
+.todo b{display:block;margin-bottom:6px;font:500 .7rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--y)}
+.todo ul{list-style:disc;padding-left:1.15em}
+.todo li + li{margin-top:4px}
+.ph{padding:0 .3em;border-radius:4px;border-bottom:1px dashed var(--y);background:rgba(255,195,46,.17);color:#ffd978;font:500 .88em var(--mono)}
+
+/* facture */
+.split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,48px);align-items:start}
+.split .route.cards{grid-template-columns:minmax(0,1fr)}
+.invoice{position:relative;padding:36px 24px 22px;background:var(--paper);color:var(--ink);border-radius:20px;font:400 .86rem/1.4 var(--mono);rotate:.8deg;box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.invoice::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:radial-gradient(circle at 8px 0,var(--bg) 5px,transparent 5.5px) 0 0/16px 10px repeat-x}
+.inv-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.inv-head img{width:min(46%,150px);height:auto}
+.inv-no{text-align:right;font-size:1rem}
+.inv-no small,.inv-f small,.inv-total small{display:block;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pmute)}
+.inv-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin:16px 0}
+.inv-f span{display:block;height:1.6em;border-bottom:1.5px dotted var(--ink)}
+.inv-lines{width:100%;border-collapse:collapse}
+.inv-lines th{padding:4px 0;font:400 .64rem var(--mono);letter-spacing:.14em;text-transform:uppercase;text-align:left;color:var(--pmute);border-bottom:2px solid var(--ink)}
+.inv-lines td{padding:6px 0;border-bottom:1.5px dotted rgba(27,24,16,.5)}
+.inv-lines th:nth-child(2),.inv-lines td:nth-child(2){width:3.2em}
+.inv-lines th:last-child,.inv-lines td:last-child{width:4.5em;text-align:right}
+.inv-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:10px;border-top:2px solid var(--ink);font:800 1.5rem/1 var(--display);letter-spacing:-.01em}
+.inv-total small{font-family:var(--mono);font-weight:400}
+.inv-pay{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:.84rem}
+.inv-pay .sig{margin-left:auto;min-width:8em;padding-top:2px;border-top:1.5px solid var(--ink);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pmute)}
+.stamp{position:absolute;right:16px;bottom:124px;padding:.1em .4em;border:3px solid #c8321e;border-radius:8px;color:#c8321e;font:800 1.7rem/1 var(--display);letter-spacing:.1em;text-transform:uppercase;rotate:-12deg;opacity:.85;pointer-events:none}
+.inv-note{margin-top:12px;font-size:.74rem;color:var(--pmute)}
+
+/* generateur d'annonces */
+.gen{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:16px;align-items:start;margin-top:clamp(28px,4vw,44px)}
+.gen-form,.ticket-out{padding:clamp(22px,3vw,32px);background:var(--s1);border:1px solid var(--line);border-radius:28px}
+.ticket-out{background:var(--s2)}
+.gen .ticket-out{position:sticky;top:96px}
+.mini{margin:24px 0 10px;font:500 .72rem/1 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--mute)}
+.mini:first-child{margin-top:0}
+.types{display:flex;flex-wrap:wrap;gap:8px}
+.types button,.seg button{font:600 .9rem/1 var(--body);cursor:pointer;color:var(--soft);background:transparent;border:1px solid var(--line2);padding:.78em 1.15em;border-radius:999px;transition:background .15s,color .15s,border-color .15s}
+.types button:hover,.seg button:hover{border-color:var(--y);color:var(--y)}
+.types button[aria-pressed=true]{background:var(--y);border-color:var(--y);color:var(--yink)}
+.seg{display:inline-flex;padding:4px;gap:2px;border:1px solid var(--line2);border-radius:999px}
+.seg button{border:0}
+.seg button[aria-pressed=true]{background:var(--y);color:var(--yink)}
+.flds{display:grid;gap:14px}
+.fld{display:grid;gap:6px}
+.fld span{font:500 .7rem/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+.fld input{width:100%;font:400 1rem var(--body);color:var(--txt);background:var(--bg);border:1px solid var(--line2);border-radius:14px;padding:.8em 1em;transition:border-color .15s}
+.fld input:focus{outline:0;border-color:var(--y)}
+.fld input::placeholder{color:var(--dim)}
+.ticket-out textarea{width:100%;min-height:15em;resize:vertical;font:400 .92rem/1.55 var(--mono);color:var(--txt);background:var(--bg);border:1px solid var(--line2);border-radius:18px;padding:16px}
+.ticket-out textarea:focus{outline:0;border-color:var(--y)}
+.cnt{margin-top:10px;font:500 .76rem var(--mono);letter-spacing:.08em;color:var(--mute)}
+.cnt.over{color:var(--rojo)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{font:600 .95rem/1 var(--body);cursor:pointer;color:var(--yink);background:var(--y);border:1px solid var(--y);padding:1em 1.6em;border-radius:999px;transition:background .15s,transform .15s}
+.btn:hover{background:#ffd25c}
+.btn.alt{color:var(--txt);background:transparent;border-color:var(--line2)}
+.btn.alt:hover{border-color:var(--y);color:var(--y);background:transparent}
+.btn.ok{background:var(--verde);border-color:var(--verde);color:#06210f}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn:disabled:hover{background:inherit;border-color:inherit;color:inherit}
+.hint{margin-top:12px;font-size:.88rem;color:var(--mute)}
+
+/* pied */
+footer{margin-top:clamp(60px,9vw,120px);border-top:1px solid var(--line);overflow:hidden}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-block:clamp(30px,4vw,46px)}
+.foot-l{display:flex;align-items:center;gap:clamp(18px,3vw,34px);flex-wrap:wrap}
+.foot img{width:min(40vw,150px);height:auto}
+.foot p{max-width:46ch;font-size:.9rem;color:var(--mute)}
+.foot .hand{display:block;margin-top:8px;font:500 .74rem var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--y)}
+.giant{margin:0 0 -.06em;padding-top:.04em;font:800 clamp(3rem,13vw,13.5rem)/.78 var(--display);letter-spacing:-.045em;text-align:center;white-space:nowrap;color:#13130e;user-select:none}
+.giant i{font-style:normal;color:#1d1c12}
+
+@media (max-width:980px){
+  .nav-cta{display:none}
+}
+@media (max-width:860px){
+  .hero-grid,.split,.gen{grid-template-columns:minmax(0,1fr)}
+  .gen .ticket-out{position:static}
+  .hero-vis{justify-self:center;max-width:470px}
+  .nav-in{flex-wrap:wrap;gap:6px 12px;padding:10px 14px 8px 18px;border-radius:28px}
+  .tabs{order:3;width:100%;margin:0;padding-bottom:2px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:640px){
+  .faq{grid-template-columns:minmax(0,1fr)}
+  .faq dt{padding-bottom:2px;border-bottom:0}
+  .faq dd{padding-top:0}
+  .cover-card{grid-template-columns:minmax(0,1fr)}
+  .cover-tile{display:none}
+  .inv-fields{grid-template-columns:1fr}
+  .checkwrap,.plain,.rules,.faq{padding-inline:20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important;scroll-behavior:auto !important}}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Navigation du kit">
+  <div class="nav-in">
+    <a class="brand" href="#top"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><b>repair<i>.</i>rico</b></a>
+    <div class="tabs" role="tablist" aria-label="Sections du kit"><a role="tab" id="tab-histoire" href="#histoire" data-tab="histoire" aria-controls="histoire" aria-selected="false" tabindex="-1">Histoire</a><a role="tab" id="tab-reparation" href="#reparation" data-tab="reparation" aria-controls="reparation" aria-selected="false" tabindex="-1">Réparation</a><a role="tab" id="tab-custom" href="#custom" data-tab="custom" aria-controls="custom" aria-selected="false" tabindex="-1">Custom</a><a role="tab" id="tab-run" href="#run" data-tab="run" aria-controls="run" aria-selected="false" tabindex="-1">Run</a><a role="tab" id="tab-facture" href="#facture" data-tab="facture" aria-controls="facture" aria-selected="false" tabindex="-1">Facture</a><a role="tab" id="tab-annonces" href="#annonces" data-tab="annonces" aria-controls="annonces" aria-selected="false" tabindex="-1">Annonces</a><a role="tab" id="tab-pratique" href="#pratique" data-tab="pratique" aria-controls="pratique" aria-selected="false" tabindex="-1">Pratique</a></div>
+    <a class="pill y sm nav-cta" href="#annonces" data-tab="annonces">Annonces <span class="ic" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span></a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-txt">
+        <p class="kick"><i class="dot"></i>Kit de bienvenue <span class="sep">·</span> Cayo Perico</p>
+        <h1>Bienvenue chez <em>Repair Rico</em>. Ici, on répare et on tient parole.</h1>
+        <p class="sub">Tu rejoins Repair Rico. Ce kit t'explique comment on travaille, de l'accueil du client à la facture. Lis-le une fois en entier, puis garde-le sous la main.</p>
+        <div class="cta">
+          <a class="pill y" href="#histoire" data-tab="histoire">Commencer <span class="ic" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span></a>
+          <a class="pill o" href="#annonces" data-tab="annonces">Générer une annonce <span class="ic" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></span></a>
+        </div>
+        <div class="trust"><span class="kick"><i class="dot"></i>Au sommaire</span><a href="#histoire" data-tab="histoire">Histoire</a><a href="#reparation" data-tab="reparation">Réparation</a><a href="#custom" data-tab="custom">Custom</a><a href="#run" data-tab="run">Run</a><a href="#facture" data-tab="facture">Facture</a><a href="#annonces" data-tab="annonces">Annonces</a><a href="#pratique" data-tab="pratique">Pratique</a></div>
+        <a class="feat t-azul" href="#reparation" data-tab="reparation">
+          <span class="th"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+          <span><small>Le plus utile au quotidien</small><b>Réparer, étape par étape</b><span>De l'accueil du client à la facture</span></span>
+        </a>
+      </div>
+      <div class="hero-vis" aria-hidden="true"><span class="ring"></span><span class="sun"></span><span class="vt a"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="vt b"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span><span class="vt c"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg></span><div class="badge"><svg viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs><text><textPath href="#circ" textLength="248" lengthAdjust="spacing">Bienvenido · la familia · Repair Rico · </textPath></text></svg><span class="arr"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span></div><span class="plus" style="left:-2%;top:2%">+</span><span class="plus" style="right:30%;top:0">+</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="bands" aria-hidden="true"><div class="band"><div class="mq"><div class="mq-g"><span>Mecánica</span><i>✳</i><span>Custom</span><i>✳</i><span>Run</span><i>✳</i><span>Facture</span><i>✳</i><span>La familia primero</span><i>✳</i><span>Venga a arreglar aquí</span><i>✳</i><span>Mecánica</span><i>✳</i><span>Custom</span><i>✳</i><span>Run</span><i>✳</i><span>Facture</span><i>✳</i><span>La familia primero</span><i>✳</i><span>Venga a arreglar aquí</span><i>✳</i></div><div class="mq-g"><span>Mecánica</span><i>✳</i><span>Custom</span><i>✳</i><span>Run</span><i>✳</i><span>Facture</span><i>✳</i><span>La familia primero</span><i>✳</i><span>Venga a arreglar aquí</span><i>✳</i><span>Mecánica</span><i>✳</i><span>Custom</span><i>✳</i><span>Run</span><i>✳</i><span>Facture</span><i>✳</i><span>La familia primero</span><i>✳</i><span>Venga a arreglar aquí</span><i>✳</i></div></div></div></div>
+
+<section class="wrap" aria-label="Le kit en chiffres"><div class="stats"><div class="stat"><b>7<i>.</i></b><span>chapitres, de l'histoire<br>du garage à la facture</span></div><div class="stat"><b>6<i>.</i></b><span>étapes pour mener<br>une réparation</span></div><div class="stat"><b>6<i>.</i></b><span>familles de custom<br>à connaître</span></div><div class="stat"><b>5<i>.</i></b><span>modèles d'annonces<br>prêts à copier</span></div></div></section>
+
+<main id="stage">
+<section class="panel p-histoire" id="histoire" role="tabpanel" aria-labelledby="tab-histoire" hidden><div class="cover"><div class="wrap"><div class="cover-card t-azul"><div class="cover-txt"><p class="kick"><i class="dot"></i><b>01/07</b><span class="sep">·</span>L'histoire</p><h2>Le garage de la <em>famille Rivera</em></h2><p class="sub">Le garage en deux minutes, et ce que ça veut dire pour toi.</p></div><div class="cover-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></div></div></div></div><div class="wrap body"><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b><span class="sep">·</span>en deux minutes</p><h3>L'<em>histoire</em></h3></header><p class="lead">Repair Rico, c'est un garage de mécanique et de custom à Cayo Perico. Il a été monté par <b>Héctor Rivera</b>, mécanicien colombien venu de Los Santos, avec son fils aîné <b>Rico</b>. Le garage porte le prénom de Rico : Héctor voulait que tout le monde sache qu'un jour, l'affaire serait à lui.</p><p class="lead">Héctor est décédé. Le garage s'est arrêté et Rico s'est retrouvé seul à l'atelier. Sa sœur <b>Camila</b> a tout lâché à Los Santos pour venir l'aider à reprendre l'activité de leur père. Aujourd'hui, le garage repart, et il a besoin de bras. C'est là que tu arrives.</p><blockquote class="pull">« Papá a construit ce garage. Je le laisserai pas tomber. »<cite>Rico</cite></blockquote></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Comment on en <em>est là</em></h3></header><ol class="route tl"><li class="step"><span class="num dot" aria-hidden="true"></span><div><span class="when">Los Santos</span><h4>Un atelier de quartier</h4><p>Héctor, mécanicien colombien, élève Rico et Camila entre les clés à molette et les dimanches en famille.</p></div></li><li class="step"><span class="num dot" aria-hidden="true"></span><div><span class="when">Cayo Perico</span><h4>Repair Rico ouvre</h4><p>Héctor et Rico montent le garage sur l'île, à la sueur de leur front. Camila reste à Los Santos pour ses études.</p></div></li><li class="step"><span class="num dot" aria-hidden="true"></span><div><span class="when">Le deuil</span><h4>Héctor nous quitte</h4><p>Le garage s'arrête. Rico garde l'atelier debout, seul, sans rien demander à personne.</p></div></li><li class="step"><span class="num dot" aria-hidden="true"></span><div><span class="when">Aujourd'hui</span><h4>La famille se retrouve</h4><p>Camila rejoint Rico. Ensemble, ils relancent Repair Rico, et ils recrutent : toi.</p></div></li></ol></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Qui est <em>qui</em></h3></header><div class="duo"><article class="idcard"><div class="id-top"><span class="av">R</span><div><h4>Rico</h4><p class="role">Gérant et mécanicien</p></div></div><p>Il parle peu et répare tout. Premier arrivé, dernier parti. Sa parole vaut un contrat, et il attend la même chose de toi.</p><p class="goto"><b>Va le voir pour</b> une question de mécanique, un doute sur une réparation, une validation de travaux.</p></article><article class="idcard"><div class="id-top"><span class="av">C</span><div><h4>Camila « Dos »</h4><p class="role">Co-gérante</p></div></div><p>Elle gère l'accueil, les devis et la relation client. Elle lit les gens en quelques secondes et négocie comme personne.</p><p class="goto"><b>Va la voir pour</b> un client difficile, un devis, un prix à discuter.</p></article></div><aside class="todo"><b>À compléter</b><ul><li>Vérifie que « va le voir pour » correspond à votre organisation réelle.</li></ul></aside></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>L'<em>esprit</em> du garage</h3></header><ul class="vals"><li><b>La familia primero</b><span>On s'entraide. Personne ne reste seul devant un problème.</span></li><li><b>Un client content</b><span>Héctor ne laissait jamais un client repartir mécontent. Si ça ne va pas, on recommence.</span></li><li><b>Sa parole vaut un contrat</b><span>Le prix et le délai annoncés, on les tient.</span></li><li><b>¡Buenos días!</b><span>On salue chaque client, en espagnol d'abord, même s'il ne comprend pas.</span></li></ul></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b><span class="sep">·</span>coche au fur et à mesure</p><h3>Tes <em>premiers pas</em></h3></header><div class="checkwrap" data-group="premiers-pas"><ul class="check"><li><label><input type="checkbox" data-k="premiers-pas-0"><span class="box" aria-hidden="true"></span><span class="tx">J'ai lu ce kit en entier, au moins une fois</span></label></li><li><label><input type="checkbox" data-k="premiers-pas-1"><span class="box" aria-hidden="true"></span><span class="tx">J'ai rejoint le Discord du garage</span></label></li><li><label><input type="checkbox" data-k="premiers-pas-2"><span class="box" aria-hidden="true"></span><span class="tx">Je me suis présenté à Rico ou à Camila, en jeu</span></label></li><li><label><input type="checkbox" data-k="premiers-pas-3"><span class="box" aria-hidden="true"></span><span class="tx">J'ai fait une première réparation avec un ancien à côté de moi</span></label></li><li><label><input type="checkbox" data-k="premiers-pas-4"><span class="box" aria-hidden="true"></span><span class="tx">J'ai posé mes questions : ici, personne ne se moque d'une question</span></label></li></ul><p class="prog" aria-live="polite"></p></div><aside class="todo"><b>À compléter</b><ul><li>Date d'ouverture, lien du Discord : <span class="ph">[lien Discord]</span></li><li>Ces cinq étapes sont une proposition, change-les librement.</li></ul></aside></section></div></section>
+<section class="panel p-reparation" id="reparation" role="tabpanel" aria-labelledby="tab-reparation" hidden><div class="cover"><div class="wrap"><div class="cover-card t-azul"><div class="cover-txt"><p class="kick"><i class="dot"></i><b>02/07</b><span class="sep">·</span>Réparation</p><h2>Réparer, <em>étape par étape</em></h2><p class="sub">Le chemin d'une réparation, de l'accueil du client à la facture.</p></div><div class="cover-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div></div></div></div><div class="wrap body"><p class="lead">Une réparation suit toujours le même chemin. Suis-le dans l'ordre : le client sait où il en est, et toi aussi. Chaque étape a deux volets : ce que tu dis et joues <b>en RP</b>, et ce que tu fais <b>en jeu</b>.</p><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b><span class="sep">·</span>dans l'ordre</p><h3>Les six <em>étapes</em></h3></header><ol class="route cards"><li class="step"><span class="num">01</span><h4>Accueillir</h4><p>Salue le client avant toute chose, en espagnol d'abord : « ¡Buenos días! ». Demande son véhicule et ce qui ne va pas, puis reformule pour être sûr d'avoir compris.</p><div class="hows"><p class="how"><b class="tag rp">En RP</b><span>Écoute sans couper, reformule : « Si je comprends bien, ça tire à gauche ? »</span></p><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[où le client gare son véhicule, zone d'accueil]</span></span></p></div></li><li class="step"><span class="num">02</span><h4>Diagnostiquer</h4><p>Regarde le véhicule avant de parler prix. Cherche l'origine du problème, pas seulement le symptôme. Si tu hésites, demande à un ancien ou à Rico.</p><div class="hows"><p class="how"><b class="tag rp">En RP</b><span>Fais-le à voix haute : le client voit que tu cherches vraiment.</span></p><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[comment inspecter un véhicule : commande ou menu]</span></span></p></div></li><li class="step"><span class="num">03</span><h4>Annoncer le devis</h4><p>Dis le prix et le délai avant de toucher à quoi que ce soit. Le client dit oui, alors tu commences. Sa parole vaut un contrat, la tienne aussi.</p><div class="hows"><p class="how"><b class="tag rp">En RP</b><span>Un prix clair, un délai honnête : pas de mauvaise surprise à la fin.</span></p><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[où trouver la grille de prix]</span></span></p></div></li><li class="step"><span class="num">04</span><h4>Réparer</h4><p>Travaille proprement et dans l'ordre. Si tu découvres un autre problème en route, arrête-toi et préviens le client avant d'ajouter quoi que ce soit.</p><div class="hows"><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[outils, pièces et kit de réparation à utiliser]</span></span></p></div></li><li class="step"><span class="num">05</span><h4>Contrôler</h4><p>Essaie le véhicule. Le problème est réglé ? Alors seulement, c'est fini. Sinon, on reprend : un client ne repart pas mécontent.</p><div class="hows"><p class="how"><b class="tag rp">En RP</b><span>Rends-le comme tu aimerais le recevoir.</span></p></div></li><li class="step"><span class="num">06</span><h4>Facturer et remercier</h4><p>Fais la facture (voir l'onglet Facture), encaisse, rends les clés et remercie : « Gracias, vuelva pronto ».</p><div class="hows"><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[commande de facturation]</span></span></p></div></li></ol></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b><span class="sep">·</span>la grille</p><h3>Les <em>prix</em></h3></header><div class="tw"><table class="board"><thead><tr><th>Intervention</th><th>Ce que ça couvre</th><th>Prix</th></tr></thead><tbody><tr><td>Diagnostic</td><td>Inspection et devis</td><td><span class="ph">[prix]</span></td></tr><tr><td>Réparation légère</td><td>Petits dégâts, pneus, entretien</td><td><span class="ph">[prix]</span></td></tr><tr><td>Moteur</td><td>Moteur, transmission, freins</td><td><span class="ph">[prix]</span></td></tr><tr><td>Carrosserie</td><td>Chocs, vitres, peinture de base</td><td><span class="ph">[prix]</span></td></tr><tr><td>Dépannage</td><td>Véhicule bloqué sur l'île</td><td><span class="ph">[prix]</span></td></tr></tbody></table></div><aside class="todo"><b>À compléter</b><ul><li>Adapte les lignes à tes vraies prestations et mets tes vrais prix.</li></ul></aside></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Que faire <em>si…</em></h3></header><dl class="faq"><dt>Le client n'a pas assez d'argent</dt><dd>Ne commence pas la réparation. Propose une version plus légère ou un autre jour, et préviens un gérant.</dd><dt>Le client s'énerve</dt><dd>Reste calme, ne hausse pas le ton. Si ça monte, appelle Camila ou Rico.</dd><dt>Le véhicule te paraît suspect</dt><dd>Ne fais pas de scène devant le client, mais ne touche à rien : préviens un gérant.</dd><dt>Tu ne sais pas faire</dt><dd>Dis-le, et demande à un ancien ou à Rico. Mieux vaut demander que casser.</dd></dl><aside class="todo"><b>À compléter</b><ul><li>Ces quatre réponses sont des propositions : valide-les ou remplace-les par vos règles.</li></ul></aside></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Sur <em>place</em></h3></header><div class="shots"><figure class="photo empty" style="--r:4/3"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/reparation-accueil.jpg</code></p></div><figcaption>L'accueil du garage</figcaption></figure><figure class="photo empty" style="--r:4/3"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/reparation-diagnostic.jpg</code></p></div><figcaption>Le poste de diagnostic</figcaption></figure></div></section></div></section>
+<section class="panel p-custom" id="custom" role="tabpanel" aria-labelledby="tab-custom" hidden><div class="cover"><div class="wrap"><div class="cover-card t-amarillo"><div class="cover-txt"><p class="kick"><i class="dot"></i><b>03/07</b><span class="sep">·</span>Custom</p><h2>La <em>custom</em>, signature du garage</h2><p class="sub">Ce qui fait la différence entre un garage de plus et Repair Rico.</p></div><div class="cover-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></div></div></div></div><div class="wrap body"><p class="lead">La custom, c'est ce qui fait la différence entre un garage de plus et Repair Rico. Camila veut que le garage devienne la référence de l'île, et la personnalisation en est le cœur.</p><aside class="todo"><b>Page en construction</b><ul><li>On la remplit ensemble : étapes détaillées, photos, tarifs.</li><li>Les emplacements photo sont prêts : dépose les images dans <code>repair-rico-kit\img\photos</code> avec le nom indiqué, puis relance le générateur.</li></ul></aside><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Les familles de <em>custom</em></h3></header><ul class="menu"><li><span class="mt"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></span><div><h4>Peinture et couleurs</h4><p>Couleurs, finitions, motifs. <span class="ph">[détails à venir]</span></p></div></li><li><span class="mt"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg></span><div><h4>Performance</h4><p>Moteur, freins, transmission, suspension. <span class="ph">[détails à venir]</span></p></div></li><li><span class="mt"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span><div><h4>Carrosserie et extérieur</h4><p>Pare-chocs, ailerons, jupes, capots. <span class="ph">[détails à venir]</span></p></div></li><li><span class="mt"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3v6.5M12 14.5V21M3 12h6.5M14.5 12H21"/></svg></span><div><h4>Roues et pneus</h4><p>Jantes, pneus, finitions. <span class="ph">[détails à venir]</span></p></div></li><li><span class="mt"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"/><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M5 18v2"/><path d="M19 18v2"/></svg></span><div><h4>Intérieur et détails</h4><p>Habitacle, accessoires, petits plus. <span class="ph">[détails à venir]</span></p></div></li><li><span class="mt"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div><h4>Plaques, vitres et finitions</h4><p>Plaques, teintes, éclairage. <span class="ph">[détails à venir]</span></p></div></li></ul></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Une custom, <em>pas à pas</em></h3></header><ol class="route cards"><li class="step"><span class="num">01</span><h4>Écouter l'envie du client</h4><p>Style, budget, usage : demande tout avant de proposer quoi que ce soit.</p><div class="hows"><p class="how"><b class="tag rp">En RP</b><span>Pose des questions, montre que tu comprends sa voiture et son idée.</span></p></div></li><li class="step"><span class="num">02</span><h4>Proposer et chiffrer</h4><p>Présente ce que tu proposes et annonce un devis custom. On ne commande rien et on ne monte rien sans l'accord du client.</p><div class="hows"><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[où consulter les tarifs custom]</span></span></p></div></li><li class="step"><span class="num">03</span><h4>Préparer</h4><p>Pièces, atelier, planning : tout est prêt avant de commencer.</p><div class="hows"><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[zone ou atelier custom, matériel]</span></span></p></div></li><li class="step"><span class="num">04</span><h4>Monter et régler</h4><p>Fais les choses dans l'ordre et vérifie chaque réglage.</p><div class="hows"><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[menu de personnalisation, étapes en jeu]</span></span></p></div></li><li class="step"><span class="num">05</span><h4>Le « reveal »</h4><p>Présente le résultat comme il se doit : c'est le moment que le client attend.</p><div class="hows"><p class="how"><b class="tag rp">En RP</b><span>Fais-le attendre une seconde, puis dévoile : « Alors, qu'est-ce que t'en dis ? »</span></p></div></li><li class="step"><span class="num">06</span><h4>Facturer et photographier</h4><p>Facture (voir l'onglet Facture), puis prends une photo pour le mur du garage, avec l'accord du client.</p><div class="hows"><p class="how"><b class="tag jeu">En jeu</b><span><span class="ph">[où publier la photo]</span></span></p></div></li></ol></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b><span class="sep">·</span>le mur du garage</p><h3>Avant / <em>après</em></h3></header><div class="shots"><figure class="photo empty" style="--r:4/3"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/custom-avant.jpg</code></p></div><figcaption>Avant</figcaption></figure><figure class="photo empty" style="--r:4/3"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/custom-apres.jpg</code></p></div><figcaption>Après</figcaption></figure><figure class="photo empty" style="--r:4/3"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/custom-atelier.jpg</code></p></div><figcaption>L'atelier custom</figcaption></figure></div></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Les <em>pièges</em></h3></header><aside class="todo"><b>À compléter</b><ul><li>Les pièges à éviter et les erreurs fréquentes : on les ajoute ensemble.</li></ul></aside></section></div></section>
+<section class="panel p-run" id="run" role="tabpanel" aria-labelledby="tab-run" hidden><div class="cover"><div class="wrap"><div class="cover-card t-azul"><div class="cover-txt"><p class="kick"><i class="dot"></i><b>04/07</b><span class="sep">·</span>Run</p><h2>Un <em>run</em>, mode d'emploi</h2><p class="sub">Partir préparé, rester joignable, revenir avec un compte rendu.</p></div><div class="cover-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg></div></div></div></div><div class="wrap body"><p class="lead">Un run, c'est une sortie du garage avec un objectif précis. <span class="ph">[explique ici ce qu'est un run chez vous : ramener des pièces, dépanner, livrer…]</span></p><p class="lead">Quel que soit le run, la règle ne change pas : on part préparé, on reste joignable et on revient avec un compte rendu.</p><aside class="todo"><b>À compléter</b><ul><li>Dis-moi ce qu'est un run chez vous : je réécris cette page autour de vos vrais runs.</li></ul></aside><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Avant de <em>partir</em></h3></header><div class="checkwrap" data-group="run-avant"><ul class="check"><li><label><input type="checkbox" data-k="run-avant-0"><span class="box" aria-hidden="true"></span><span class="tx">Je préviens le garage : qui part, où et pour combien de temps</span></label></li><li><label><input type="checkbox" data-k="run-avant-1"><span class="box" aria-hidden="true"></span><span class="tx">Mon véhicule est en état et le plein est fait</span></label></li><li><label><input type="checkbox" data-k="run-avant-2"><span class="box" aria-hidden="true"></span><span class="tx">J'ai mes outils et ce qu'il faut pour l'objectif</span></label></li><li><label><input type="checkbox" data-k="run-avant-3"><span class="box" aria-hidden="true"></span><span class="tx">J'ai mon téléphone sur moi</span></label></li><li><label><input type="checkbox" data-k="run-avant-4"><span class="box" aria-hidden="true"></span><span class="tx"><span class="ph">[autre élément propre au run]</span></span></label></li></ul><p class="prog" aria-live="polite"></p></div></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3><em>Pendant</em></h3></header><ul class="plain"><li>Je roule tranquille : un run en retard vaut mieux qu'un run raté.</li><li>Je reste joignable.</li><li>Je n'improvise pas : si le plan change, je préviens le garage.</li><li>Si ça tourne mal (panne, contrôle, agression), j'appelle le garage et je ne joue pas au héros.</li></ul></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Au <em>retour</em></h3></header><div class="checkwrap" data-group="run-retour"><ul class="check"><li><label><input type="checkbox" data-k="run-retour-0"><span class="box" aria-hidden="true"></span><span class="tx">Je dépose ce que j'ai ramené au bon endroit</span></label></li><li><label><input type="checkbox" data-k="run-retour-1"><span class="box" aria-hidden="true"></span><span class="tx">Je fais mon compte rendu au garage</span></label></li><li><label><input type="checkbox" data-k="run-retour-2"><span class="box" aria-hidden="true"></span><span class="tx">Je passe à la facture si le run en demande une</span></label></li><li><label><input type="checkbox" data-k="run-retour-3"><span class="box" aria-hidden="true"></span><span class="tx">Je range le véhicule et les outils</span></label></li></ul><p class="prog" aria-live="polite"></p></div></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>La <em>carte</em></h3></header><figure class="photo empty" style="--r:16/10"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/run-carte.jpg</code></p></div><figcaption>La carte du run : départ, étapes, arrivée</figcaption></figure></section></div></section>
+<section class="panel p-facture" id="facture" role="tabpanel" aria-labelledby="tab-facture" hidden><div class="cover"><div class="wrap"><div class="cover-card t-verde"><div class="cover-txt"><p class="kick"><i class="dot"></i><b>05/07</b><span class="sep">·</span>Facture</p><h2>La <em>facture</em>, avant de rendre les clés</h2><p class="sub">Pas de facture, pas de paiement : comment la remplir sans rien oublier.</p></div><div class="cover-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg></div></div></div></div><div class="wrap body"><p class="lead">Pas de facture, pas de paiement : c'est ce qui paie les pièces, l'atelier et les mécanos. Une facture claire évite les discussions avec le client.</p><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Une facture, <em>étape par étape</em></h3></header><div class="split"><div><div class="invoice" aria-label="Exemple de facture"><div class="inv-head"><img src="img/logo.png" alt="Repair Rico"><div class="inv-no"><small>Facture · Factura</small>N° ____</div></div><div class="inv-fields"><div class="inv-f"><small>Date</small><span></span></div><div class="inv-f"><small>Mécano</small><span></span></div><div class="inv-f"><small>Client</small><span></span></div><div class="inv-f"><small>Véhicule / plaque</small><span></span></div></div><table class="inv-lines"><thead><tr><th>Prestation</th><th>Qté</th><th>Prix</th></tr></thead><tbody><tr><td>Diagnostic</td><td>1</td><td>…</td></tr><tr><td>Pièce</td><td>…</td><td>…</td></tr><tr><td>Main d'œuvre</td><td>…</td><td>…</td></tr><tr><td>&nbsp;</td><td></td><td></td></tr></tbody></table><div class="inv-total"><small>Total · Total</small><span>……… $</span></div><div class="inv-pay"><span>☐ Espèces</span><span>☐ Carte</span><span class="sig">Signature</span></div><span class="stamp" aria-hidden="true">Pagado</span><p class="inv-note">Exemple fictif : les montants sont à remplir.</p></div></div><div><ol class="route cards"><li class="step"><span class="num">01</span><h4>Le devis d'abord</h4><p>Le prix est annoncé et accepté avant le travail, jamais après.</p></li><li class="step"><span class="num">02</span><h4>Ouvre la facture</h4><p><span class="ph">[commande ou menu de facturation]</span></p></li><li class="step"><span class="num">03</span><h4>Remplis</h4><p>Client, prestations, prix. <span class="ph">[autres champs demandés]</span></p></li><li class="step"><span class="num">04</span><h4>Montre le total</h4><p>Le total doit être le même que le devis. Montre-le au client avant d'encaisser.</p></li><li class="step"><span class="num">05</span><h4>Encaisse et rends les clés</h4><p>Espèces ou carte, puis remercie : « Gracias, vuelva pronto ».</p></li><li class="step"><span class="num">06</span><h4>Garde une trace</h4><p><span class="ph">[où va l'argent : coffre, compte, déclaration]</span></p></li></ol></div></div></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Les règles d'<em>or</em></h3></header><ul class="rules"><li><b>Prix annoncé = prix facturé.</b> Toujours.</li><li><b>Une facture</b> par véhicule et par service.</li><li><b>Remises et gestes commerciaux :</b> <span class="ph">[qui peut en accorder, jusqu'à combien]</span></li><li><b>Client qui ne paie pas :</b> préviens un gérant. <span class="ph">[procédure en cas d'impayé]</span></li></ul></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>En <em>jeu</em></h3></header><figure class="photo empty" style="--r:16/10"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/facture-ecran.jpg</code></p></div><figcaption>Le menu de facturation en jeu</figcaption></figure></section></div></section>
+<section class="panel p-annonces" id="annonces" role="tabpanel" aria-labelledby="tab-annonces" hidden><div class="cover"><div class="wrap"><div class="cover-card t-azul"><div class="cover-txt"><p class="kick"><i class="dot"></i><b>06/07</b><span class="sep">·</span>Annonces</p><h2>Des <em>annonces</em> prêtes à copier-coller</h2><p class="sub">Choisis le type, remplis les champs, copie dans Discord ou en jeu.</p></div><div class="cover-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div></div></div></div><div class="wrap body"><p class="lead">Choisis le type d'annonce, remplis les champs, et le texte s'écrit tout seul. Copie-le ensuite dans Discord ou en jeu. Les modèles se remplissent, ils ne sont pas écrits par une IA : tu peux toujours retoucher le texte à la main.</p><div class="gen" id="gen"><div class="gen-form"><p class="mini">1 · Le type</p><div class="types" id="g-types" role="group" aria-label="Type d'annonce"></div><p class="mini">2 · Le format</p><div class="seg" id="g-fmt" role="group" aria-label="Format"><button type="button" data-v="discord" aria-pressed="true">Discord</button><button type="button" data-v="jeu" aria-pressed="false">En jeu</button></div><p class="mini">3 · Le ton</p><div class="seg" id="g-tone" role="group" aria-label="Ton"><button type="button" data-v="chaud" aria-pressed="true">Chaleureux</button><button type="button" data-v="direct" aria-pressed="false">Direct</button></div><p class="mini">4 · Les infos</p><div class="flds" id="g-fields"></div></div><div class="gen-out"><div class="ticket-out"><p class="mini">Ton annonce</p><textarea id="g-out" rows="11" spellcheck="false" aria-label="Annonce générée" data-max="200"></textarea><p class="cnt" id="g-cnt" aria-live="polite"></p><div class="actions"><button type="button" class="btn" id="g-copy">Copier</button><button type="button" class="btn alt" id="g-next">Une autre version</button></div><p class="hint" id="g-hint"></p></div></div></div><aside class="todo"><b>À compléter</b><ul><li>Dis-moi les annonces que vous faites le plus et la taille maximale d'un message en jeu : j'ajuste les modèles et le compteur.</li><li>Ajoute tes propres formules : tout est dans <code>ANNONCES</code>, dans <code>build_kit.py</code>.</li></ul></aside></div></section>
+<section class="panel p-pratique" id="pratique" role="tabpanel" aria-labelledby="tab-pratique" hidden><div class="cover"><div class="wrap"><div class="cover-card t-amarillo"><div class="cover-txt"><p class="kick"><i class="dot"></i><b>07/07</b><span class="sep">·</span>Pratique</p><h2>Tout ce qu'il faut <em>savoir</em></h2><p class="sub">Règles, grades, paie, contacts, plan et lexique : tout au même endroit.</p></div><div class="cover-tile" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div></div></div></div><div class="wrap body"><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Les <em>règles</em> du garage</h3></header><p class="lead">Les règles du serveur passent en premier, au garage comme ailleurs. Lis-les avant ta première prise de service : <span class="ph">[lien du règlement]</span></p><div class="duo yn"><div><h4 class="yes-h">Toujours</h4><ul class="yes"><li>Saluer chaque client</li><li>Annoncer le prix avant de commencer</li><li>Noter ce qui entre et sort du coffre</li><li>Demander de l'aide plutôt que de casser</li><li>Rester dans ton personnage</li></ul></div><div><h4 class="no-h">Jamais</h4><ul class="no"><li>Toucher un véhicule sans l'accord de son propriétaire</li><li>Travailler sans être en service</li><li>Accorder une remise sans l'accord d'un gérant</li><li>Utiliser en dehors du jeu ce que tu as appris en jeu</li><li>Te servir dans le coffre pour toi</li></ul></div></div><aside class="todo"><b>À compléter</b><ul><li>Ces règles sont des propositions : garde, retire, ajoute les vôtres.</li></ul></aside></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Les <em>grades</em></h3></header><ul class="menu grades"><li><span class="mt t-verde"><b>1</b></span><div><h4>Aprendiz</h4><p>Tu débutes et tu travailles avec un ancien. <span class="ph">[conditions pour passer au grade suivant]</span></p></div></li><li><span class="mt t-azul"><b>2</b></span><div><h4>Mecánico</h4><p>Tu réalises les réparations en autonomie. <span class="ph">[conditions]</span></p></div></li><li><span class="mt t-naranja"><b>3</b></span><div><h4><span class="ph">[grade suivant]</span></h4><p><span class="ph">[rôle et responsabilités]</span></p></div></li></ul><aside class="todo"><b>À compléter</b><ul><li>Les noms de grades sont une proposition (« Aprendiz » vient de vos affiches).</li></ul></aside></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Service et <em>paie</em></h3></header><ul class="plain"><li><b>Prendre son service :</b> <span class="ph">[comment]</span></li><li><b>Horaires attendus :</b> <span class="ph">[horaires ou disponibilités]</span></li><li><b>Paie :</b> <span class="ph">[comment et quand tu es payé]</span></li><li><b>Absence :</b> <span class="ph">[qui prévenir et comment]</span></li></ul></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Les <em>contacts</em></h3></header><dl class="faq"><dt>Rico, gérant</dt><dd><span class="ph">[contact]</span></dd><dt>Camila, co-gérante</dt><dd><span class="ph">[contact]</span></dd><dt>Discord du garage</dt><dd><span class="ph">[lien]</span></dd><dt>Téléphone du garage</dt><dd><span class="ph">[numéro]</span></dd></dl></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Le <em>plan</em> du garage</h3></header><figure class="photo empty" style="--r:16/10"><div class="frame"><svg class="i ghost" viewBox="0 0 24 24" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg><p><b>Photo à ajouter</b><code>img/photos/pratique-plan.jpg</code></p></div><figcaption>Le plan du garage : accueil, établis, coffre, atelier custom</figcaption></figure></section><section class="blk"><header class="bh"><p class="kick"><i class="dot"></i><b class="no"></b></p><h3>Le <em>lexique</em></h3></header><dl class="faq"><dt>Devis</dt><dd>Le prix et le délai annoncés avant le travail. Accepté par le client, il devient notre promesse.</dd><dt>Run</dt><dd>Une sortie du garage avec un objectif précis (voir l'onglet Run).</dd><dt>Custom</dt><dd>La personnalisation d'un véhicule : couleurs, pièces, style.</dd><dt>Aprendiz</dt><dd>Mécano en formation, qui travaille avec un ancien.</dd><dt>Taller</dt><dd>L'atelier, en espagnol.</dd><dt>¡Venga!</dt><dd>« Allez, viens ! » Tu l'entendras souvent.</dd></dl></section></div></section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="foot-l">
+      <img src="img/logo-tinta.png" alt="Repair Rico" width="640" height="345">
+      <div><p>Kit de bienvenue des membres de Repair Rico, à Cayo Perico. Document interne à l'équipe. Projet de roleplay, non affilié à Rockstar Games.</p><span class="hand">La familia primero.</span></div>
+    </div>
+    <a class="pill o sm" href="#top">Retour en haut <span class="ic" aria-hidden="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></span></a>
+  </div>
+  <p class="giant" aria-hidden="true">repair<i>.</i>rico</p>
+</footer>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var tabsEl=document.querySelector('.tabs');
+  var tabs=[].slice.call(document.querySelectorAll('.tabs [role="tab"]'));
+  var panels=[].slice.call(document.querySelectorAll('[role="tabpanel"]'));
+  var stage=document.getElementById('stage');
+  var ids=panels.map(function(p){return p.id});
+  var first=ids[0];
+
+  function center(t){
+    var l=t.offsetLeft-(tabsEl.clientWidth-t.offsetWidth)/2;
+    tabsEl.scrollTo({left:l,behavior:reduce?'auto':'smooth'});
+  }
+  function show(id){
+    if(ids.indexOf(id)<0)return false;
+    panels.forEach(function(p){p.hidden=(p.id!==id)});
+    tabs.forEach(function(t){
+      var on=t.getAttribute('data-tab')===id;
+      t.setAttribute('aria-selected',on?'true':'false');
+      t.tabIndex=on?0:-1;
+      if(on)center(t);
+    });
+    return true;
+  }
+  function toStage(){window.scrollTo({top:stage.offsetTop-document.querySelector('.nav').offsetHeight,behavior:reduce?'auto':'smooth'})}
+  function go(id,scroll){
+    if(!show(id))return;
+    try{history.replaceState(null,'','#'+id)}catch(e){}
+    if(scroll)toStage();
+  }
+  function fromHash(scroll){
+    var h=decodeURIComponent(location.hash.replace('#',''));
+    if(!h)return show(first);
+    if(show(h)){if(scroll)toStage();return true}
+    return show(first);
+  }
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest('a[data-tab]');
+    if(!a)return;
+    ev.preventDefault();
+    go(a.getAttribute('data-tab'),true);
+  });
+  tabsEl.addEventListener('keydown',function(ev){
+    var i=tabs.indexOf(document.activeElement);
+    if(i<0)return;
+    var n=null;
+    if(ev.key==='ArrowRight')n=(i+1)%tabs.length;
+    else if(ev.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+    else if(ev.key==='Home')n=0;
+    else if(ev.key==='End')n=tabs.length-1;
+    if(n===null)return;
+    ev.preventDefault();tabs[n].focus();go(tabs[n].getAttribute('data-tab'),false);
+  });
+  window.addEventListener('hashchange',function(){fromHash(true)});
+  fromHash(!!location.hash);
+
+  /* cases a cocher, memorisees sur cet appareil */
+  function prog(w){
+    var all=w.querySelectorAll('input[type=checkbox]'),done=w.querySelectorAll('input:checked').length;
+    w.querySelector('.prog').textContent=done+' / '+all.length+(done===all.length?' · ¡Listo!':'');
+  }
+  [].forEach.call(document.querySelectorAll('.checkwrap'),function(w){
+    [].forEach.call(w.querySelectorAll('input[type=checkbox]'),function(i){
+      var k='rrkit:'+i.getAttribute('data-k');
+      try{if(localStorage.getItem(k)==='1')i.checked=true}catch(e){}
+      i.addEventListener('change',function(){
+        try{localStorage.setItem(k,i.checked?'1':'0')}catch(e){}
+        prog(w);
+      });
+    });
+    prog(w);
+  });
+
+  /* generateur d'annonces */
+  var ANN={"ouverture": {"label": "Ouverture", "fields": [["date", "Date", "ex. samedi 22 novembre", ""], ["heure", "Heure", "ex. 20h", ""], ["lieu", "Lieu", "ex. le garage, Cayo Perico", "Cayo Perico"], ["plus", "Au programme (facultatif)", "ex. mécanique et custom", ""], ["contact", "Contact (facultatif)", "ex. appeler le garage", ""]], "discord": {"chaud": ["# 🔧 Repair Rico ouvre ses portes !\n\nLe garage de la famille Rivera vous attend **{date}** à **{heure}**.\n📍 {lieu}\n[[plus|🛠️ Au programme : {plus}\n]][[contact|📞 {contact}\n]]\n*La familia primero. ¡Venga a arreglar aquí!*", "# ¡Bienvenidos a Repair Rico!\n\nOn vous ouvre la porte **{date}** à **{heure}** : {lieu}.\n[[plus|Pour vous : {plus}.\n]][[contact|Une question ? {contact}\n]]\nÀ très vite à l'atelier. 🔧"], "direct": ["**🔧 REPAIR RICO · OUVERT**\n📅 {date} · {heure}\n📍 {lieu}\n[[plus|🛠️ {plus}\n]][[contact|📞 {contact}]]"]}, "jeu": {"chaud": ["Repair Rico ouvre ses portes {date} à {heure} ! {lieu}.[[plus| Au programme : {plus}.]] ¡Venga a arreglar aquí!", "Repair Rico vous accueille {date} à {heure}, {lieu}.[[plus| {plus}.]] ¡Bienvenidos!"], "direct": ["Repair Rico ouvert {date} {heure}, {lieu}.[[contact| Contact : {contact}.]]"]}}, "fermeture": {"label": "Fermeture", "fields": [["motif", "Motif (facultatif)", "ex. inventaire", ""], ["retour", "Réouverture", "ex. lundi 24, 18h", ""], ["contact", "Contact urgence (facultatif)", "", ""]], "discord": {"chaud": ["# 🔒 Repair Rico ferme ses portes un instant\n\nLe garage est fermé[[motif| ({motif})]]. On vous retrouve **{retour}**.\n[[contact|📞 En cas d'urgence : {contact}\n]]\n*Gracias por su paciencia. La familia vuelve pronto.*", "# Fermeture temporaire\n\nRepair Rico est fermé[[motif| ({motif})]] jusqu'à **{retour}**.\n[[contact|Urgence : {contact}\n]]Merci de votre patience, on revient plus forts. 🔧"], "direct": ["**🔒 REPAIR RICO · FERMÉ**\n[[motif|Motif : {motif}\n]]↩️ Réouverture : {retour}\n[[contact|📞 {contact}]]"]}, "jeu": {"chaud": ["Repair Rico est fermé[[motif| ({motif})]]. Retour {retour}.[[contact| Urgence : {contact}.]] ¡Gracias por su paciencia!", "Le garage prend une pause[[motif| ({motif})]]. Rendez-vous {retour} !"], "direct": ["Repair Rico fermé[[motif| ({motif})]]. Retour {retour}."]}}, "recrutement": {"label": "Recrutement", "fields": [["poste", "Poste", "", "Mécanicien / Apprenti"], ["profil", "Profil recherché (facultatif)", "ex. sérieux, dispo le soir", ""], ["postuler", "Comment postuler", "", "Passe au garage et demande Rico ou Camila"], ["limite", "Date limite (facultatif)", "ex. jusqu'au 30 novembre", ""]], "discord": {"chaud": ["# 🧰 Repair Rico recrute !\n\nLa famille Rivera cherche du renfort : **{poste}**.\n[[profil|👤 Profil : {profil}\n]]📝 Pour postuler : {postuler}\n[[limite|⏳ {limite}\n]]\n*Viens rejoindre la familia.*", "# On a besoin de bras !\n\nRepair Rico recrute : **{poste}**.\n[[profil|Profil recherché : {profil}.\n]]{postuler}.\n[[limite|{limite}\n]]¡Venga a trabajar con nosotros! 🔧"], "direct": ["**🧰 REPAIR RICO RECRUTE**\n🔹 Poste : {poste}\n[[profil|🔹 Profil : {profil}\n]]🔹 Postuler : {postuler}\n[[limite|🔹 {limite}]]"]}, "jeu": {"chaud": ["Repair Rico recrute : {poste} ![[profil| Profil : {profil}.]] {postuler}. La familia t'attend !", "Envie de rejoindre la famille Rivera ? Repair Rico cherche : {poste}. {postuler}.[[limite| {limite}.]]"], "direct": ["Repair Rico recrute : {poste}. {postuler}.[[limite| {limite}.]]"]}}, "evenement": {"label": "Événement", "fields": [["nom", "Nom de l'événement", "", "Noche custom"], ["date", "Date", "ex. vendredi 28 novembre", ""], ["heure", "Heure", "ex. 21h", ""], ["lieu", "Lieu", "ex. le garage, Cayo Perico", "Cayo Perico"], ["programme", "Au programme (facultatif)", "ex. présentation de customs, musique", ""], ["contact", "Contact (facultatif)", "", ""]], "discord": {"chaud": ["# 🎉 {nom} chez Repair Rico !\n\n📅 **{date}** à **{heure}**\n📍 {lieu}\n[[programme|🛠️ Au programme : {programme}\n]][[contact|📞 {contact}\n]]\n*Venez nombreux. ¡Venga!*", "# {nom}\n\nLa famille Rivera vous invite **{date}** à **{heure}**, {lieu}.\n[[programme|{programme}.\n]]Ambiance, bonne mécanique et bonne humeur. 🔧"], "direct": ["**🎉 {nom}**\n📅 {date} · {heure}\n📍 {lieu}\n[[programme|🛠️ {programme}\n]][[contact|📞 {contact}]]"]}, "jeu": {"chaud": ["{nom} chez Repair Rico ! {date} à {heure}, {lieu}.[[programme| {programme}.]] ¡Venga!", "La famille Rivera vous invite : {nom}, {date} à {heure}, {lieu}. ¡Bienvenidos!"], "direct": ["{nom} - Repair Rico, {date} {heure}, {lieu}."]}}, "promo": {"label": "Offre", "fields": [["offre", "L'offre", "ex. le diagnostic offert pour toute réparation", ""], ["conditions", "Conditions (facultatif)", "ex. sur présentation de cette annonce", ""], ["jusqu", "Jusqu'au (facultatif)", "ex. 30 novembre", ""], ["contact", "Contact (facultatif)", "", ""]], "discord": {"chaud": ["# 🎁 Offre chez Repair Rico !\n\n**{offre}**\n[[conditions|ℹ️ {conditions}\n]][[jusqu|⏳ Jusqu'au {jusqu}\n]][[contact|📞 {contact}\n]]\n*¡Venga a arreglar aquí!*", "# Ça se passe chez Repair Rico\n\n👉 {offre}\n[[conditions|{conditions}\n]][[jusqu|Valable jusqu'au {jusqu}.\n]]Passez au garage, on s'occupe de vous. 🔧"], "direct": ["**🎁 REPAIR RICO · OFFRE**\n{offre}\n[[conditions|ℹ️ {conditions}\n]][[jusqu|⏳ Jusqu'au {jusqu}\n]][[contact|📞 {contact}]]"]}, "jeu": {"chaud": ["Offre chez Repair Rico : {offre} ![[conditions| {conditions}.]][[jusqu| Jusqu'au {jusqu}.]] ¡Venga a arreglar aquí!", "Bonne nouvelle de la famille Rivera : {offre}.[[jusqu| Valable jusqu'au {jusqu}.]] ¡Bienvenidos!"], "direct": ["Repair Rico : {offre}.[[jusqu| Jusqu'au {jusqu}.]]"]}}};
+  var gen=document.getElementById('gen');
+  if(gen){
+    var st={type:'ouverture',fmt:'discord',tone:'chaud',n:0,vals:{}};
+    var typesEl=document.getElementById('g-types'),fieldsEl=document.getElementById('g-fields');
+    var out=document.getElementById('g-out'),cnt=document.getElementById('g-cnt'),hint=document.getElementById('g-hint');
+    var max=parseInt(out.getAttribute('data-max'),10)||200;
+
+    Object.keys(ANN).forEach(function(k){
+      var b=document.createElement('button');
+      b.type='button';b.textContent=ANN[k].label;b.setAttribute('data-v',k);
+      b.setAttribute('aria-pressed',k===st.type?'true':'false');
+      typesEl.appendChild(b);
+    });
+
+    function render(tpl,v,labels){
+      var s=tpl.replace(/\[\[(\w+)\|([\s\S]*?)\]\]/g,function(_,k,t){return (v[k]||'').trim()?t:''});
+      var missing={};
+      s=s.replace(/\{(\w+)\}/g,function(_,k){
+        var x=(v[k]||'').trim();
+        if(x)return x;
+        missing[k]=1;return '['+String(labels[k]||k).toLowerCase()+']';
+      });
+      s=s.replace(/\n{3,}/g,'\n\n').replace(/[ \t]+\n/g,'\n').trim();
+      s=s.replace(/(^|[.!?]\s+|\n)([a-zà-öø-ÿ])/g,function(_,a,b){return a+b.toUpperCase()});
+      return {text:s,missing:Object.keys(missing).length};
+    }
+    function buildFields(){
+      var def=ANN[st.type];fieldsEl.innerHTML='';
+      def.fields.forEach(function(f){
+        if(st.vals[f[0]]===undefined)st.vals[f[0]]=f[3];
+        var l=document.createElement('label');l.className='fld';
+        var s=document.createElement('span');s.textContent=f[1];
+        var i=document.createElement('input');i.type='text';i.setAttribute('data-k',f[0]);i.placeholder=f[2]||'';i.value=st.vals[f[0]];
+        i.addEventListener('input',function(){st.vals[f[0]]=i.value;generate()});
+        l.appendChild(s);l.appendChild(i);fieldsEl.appendChild(l);
+      });
+    }
+    function generate(){
+      var def=ANN[st.type],labels={};
+      def.fields.forEach(function(f){labels[f[0]]=f[1]});
+      var list=def[st.fmt][st.tone];
+      var nx=document.getElementById('g-next');nx.disabled=list.length<2;nx.title=list.length<2?'Une seule version pour ce ton':'';
+      var r=render(list[st.n%list.length],st.vals,labels);
+      out.value=r.text;
+      var len=r.text.length;
+      if(st.fmt==='jeu'){
+        cnt.textContent=len+' / '+max+' caractères (repère)';
+        cnt.classList.toggle('over',len>max);
+      }else{
+        cnt.textContent=len+' caractères';cnt.classList.remove('over');
+      }
+      hint.textContent=r.missing?('Il reste '+r.missing+' champ'+(r.missing>1?'s':'')+' à remplir : les crochets [ ] sont à remplacer.'):'';
+    }
+    function seg(id,key){
+      var el=document.getElementById(id);
+      el.addEventListener('click',function(ev){
+        var b=ev.target.closest('button');if(!b)return;
+        st[key]=b.getAttribute('data-v');st.n=0;
+        [].forEach.call(el.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+        generate();
+      });
+    }
+    seg('g-fmt','fmt');seg('g-tone','tone');
+    typesEl.addEventListener('click',function(ev){
+      var b=ev.target.closest('button');if(!b)return;
+      st.type=b.getAttribute('data-v');st.n=0;
+      [].forEach.call(typesEl.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      buildFields();generate();
+    });
+    document.getElementById('g-next').addEventListener('click',function(){st.n++;generate()});
+    var copy=document.getElementById('g-copy');
+    copy.addEventListener('click',function(){
+      function done(){copy.textContent='Copié ✓';copy.classList.add('ok');setTimeout(function(){copy.textContent='Copier';copy.classList.remove('ok')},1800)}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(out.value).then(done,function(){out.select();document.execCommand('copy');done()})}
+      else{out.select();document.execCommand('copy');done()}
+    });
+    buildFields();generate();
+  }
+})();
+</script>
+</body>
+</html>
