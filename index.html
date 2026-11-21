@@ -95,6 +95,20 @@ code{font:500 .86em var(--mono);background:rgba(255,255,255,.08);padding:.1em .4
 .ring{position:absolute;left:-8%;right:-8%;top:4%;aspect-ratio:1;border-radius:50%;border:1px solid var(--line)}
 .sun{position:absolute;left:4%;right:4%;bottom:0;aspect-ratio:2/1;border-radius:50% 50% 0 0/100% 100% 0 0;background:var(--y)}
 .vis-cut{position:absolute;left:50%;bottom:0;height:96%;width:auto;transform:translateX(-50%)}
+.hero{z-index:1}
+.hero.has-cut .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.04fr)}
+.hero.has-cut .hero-vis{max-width:620px;aspect-ratio:1/.9}
+.hero.has-cut + .bands{margin-top:-66px;position:relative;z-index:3}
+.cutf{position:absolute;bottom:0;height:auto;filter:drop-shadow(0 20px 26px rgba(0,0,0,.4))}
+.hero.has-cut .sun{left:-4%;right:-4%}
+.cutf.cam{left:2%;width:52%;z-index:2}
+.cutf.rico{right:1%;width:49%;z-index:3}
+.cutn{position:absolute;z-index:4;bottom:19%;padding:9px 18px 10px;background:rgba(27,27,22,.92);border:1px solid var(--line2);border-radius:16px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.cutn b{display:block;font:700 1.05rem/1.1 var(--display)}
+.cutn small{display:block;margin-top:3px;font:500 .64rem/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--y)}
+.cutn.cam{left:1%}
+.cutn.rico{right:1%}
+.hero.has-cut .badge{left:50%;right:auto;top:0;margin-left:calc(clamp(88px,20%,108px) / -2)}
 .vt{position:absolute;display:grid;place-items:center;aspect-ratio:1;border-radius:28%;color:#fff;background:linear-gradient(160deg,#2a2a22,#15150f);border:1px solid var(--line2);box-shadow:0 26px 50px rgba(0,0,0,.55)}
 .vt .i{width:50%;height:50%;stroke-width:1.25}
 .vt.a{left:8%;top:14%;width:36%;rotate:-8deg}
@@ -348,6 +362,8 @@ footer{margin-top:clamp(60px,9vw,120px);border-top:1px solid var(--line);overflo
   .hero-grid,.split,.gen{grid-template-columns:minmax(0,1fr)}
   .gen .ticket-out{position:static}
   .hero-vis{justify-self:center;max-width:470px}
+  .hero.has-cut .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero.has-cut .hero-vis{justify-self:center;max-width:540px}
   .nav-in{flex-wrap:wrap;gap:6px 12px;padding:10px 14px 8px 18px;border-radius:28px}
   .tabs{order:3;width:100%;margin:0;padding-bottom:2px}
   .stats{grid-template-columns:repeat(2,1fr)}
@@ -376,7 +392,7 @@ footer{margin-top:clamp(60px,9vw,120px);border-top:1px solid var(--line);overflo
   </div>
 </nav>
 
-<header class="hero" id="top">
+<header class="hero has-cut" id="top">
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-txt">
@@ -393,7 +409,7 @@ footer{margin-top:clamp(60px,9vw,120px);border-top:1px solid var(--line);overflo
           <span><small>Le plus utile au quotidien</small><b>Réparer en 4 étapes</b><span>Ta première réparation, pas à pas</span></span>
         </a>
       </div>
-      <div class="hero-vis" aria-hidden="true"><span class="ring"></span><span class="sun"></span><span class="vt a"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><span class="vt b"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg></span><span class="vt c"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 17.5v-11"/></svg></span><div class="badge"><svg viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs><text><textPath href="#circ" textLength="248" lengthAdjust="spacing">Bienvenido · la familia · Repair Rico · </textPath></text></svg><span class="arr"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span></div><span class="plus" style="left:-2%;top:2%">+</span><span class="plus" style="right:30%;top:0">+</span></div>
+      <div class="hero-vis"><span class="ring" aria-hidden="true"></span><span class="sun" aria-hidden="true"></span><img class="cutf cam" src="img/photos/hero-camila.webp" alt="Camila, Co-patronne"><img class="cutf rico" src="img/photos/hero-rico.webp" alt="Rico, Patron"><div class="cutn cam"><b>Camila</b><small>Co-patronne</small></div><div class="cutn rico"><b>Rico</b><small>Patron</small></div><div class="badge" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><path id="circ" d="M50,50 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs><text><textPath href="#circ" textLength="248" lengthAdjust="spacing">Bienvenido · la familia · Repair Rico · </textPath></text></svg><span class="arr"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span></div><span class="plus" aria-hidden="true" style="left:-2%;top:2%">+</span><span class="plus" aria-hidden="true" style="right:30%;top:0">+</span></div>
     </div>
   </div>
 </header>
